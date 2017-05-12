@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" configfailurepolicy="skip">
+    <test name="test1">
+        <parameter name="browser" value="chrome" />
+        <parameter name="webDriverPath" value="C:\\Users\\maciek\\Downloads\\chromedriver_win32\\chromedriver.exe" />
+        <parameter name="resultsPath" value="C:\Users\maciek\IdeaProjects\PKPTests\resources\polaczenie_kolejowe.pdf" />
+        <parameter name="firstTime" value="17:00" />
+        <parameter name="secondTime" value="19:00" />
+        <parameter name="departureStation" value="Warszawa Służewiec" />
+        <parameter name="arrivalStation" value="Warszawa Lotnisko Chopina" />
+        <parameter name="operator" value="SKM" />
+        <classes>
+            <class name="com.macloz.PKPTests.SeleniumTests"/>
+        </classes>
+    </test>
+</suite>
