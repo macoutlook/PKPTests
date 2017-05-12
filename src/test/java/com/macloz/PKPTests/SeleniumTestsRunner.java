@@ -12,13 +12,14 @@ import java.util.List;
 /**
  * Created by maciek on 2017-05-08.
  */
-public class SeleniumTestsRunner {
-    public static void main(String[] args) {
-//        String pathToWebDriver = "C:\\Users\\maciek\\Downloads\\chromedriver_win32\\chromedriver.exe";
-//        String pathToResults = "resources\\polaczenia_kolejowe";
 
+
+public class SeleniumTestsRunner {
+    
+    public static void main(String[] args) {
         String testNGXmlPath = "testng.xml";
         List<XmlSuite> testSuiteList;
+
         try
         {
             testSuiteList = (List <XmlSuite>)(new Parser(testNGXmlPath).parse());

@@ -11,8 +11,8 @@ import java.util.Date;
  */
 public class PageObject {
 
-
     protected WebDriver webDriver;
+
 
     public PageObject(WebDriver driver) {
         this.webDriver = driver;

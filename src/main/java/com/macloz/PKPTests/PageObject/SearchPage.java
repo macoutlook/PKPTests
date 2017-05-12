@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by maciek on 2017-05-09.
  */
 public class SearchPage extends PageObject {
+
     @FindBy(id="from-station")
     private WebElement fromStation;
 

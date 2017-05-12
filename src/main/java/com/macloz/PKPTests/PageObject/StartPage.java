@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by maciek on 2017-05-09.
  */
 public class StartPage extends PageObject {
+
     @FindBy(id="subtitle1")
     private WebElement timeTableButton;
 

@@ -17,6 +17,7 @@ import java.util.NoSuchElementException;
  */
 
 public class ResultPage extends PageObject {
+
     List<WebElementsPair>webElementsPairList;
     String classNamePattern = "focus_guiVCtrl_connection_detailsOut_select_C0-";
     String xpathPattern = "//*[@id=\"'className'\"]/td[4]/p['number']/span'spanNumber'/span[3]";
