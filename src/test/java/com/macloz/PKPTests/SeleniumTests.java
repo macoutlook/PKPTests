@@ -44,6 +44,8 @@ public class SeleniumTests {
     @BeforeMethod
     protected void beforeTestMethod(){
         this.webDriver = new ChromeDriver();
+        this.webDriver.get("http://www.pkp.pl");
+        this.webDriver.manage().window().maximize();
     }
 
     @AfterMethod
@@ -51,26 +53,27 @@ public class SeleniumTests {
         this.webDriver.quit();
     }
 
-    @Test
-    public void testTakeTimeTable() {
+//            <parameter name="firstTime" value="17:00" />
+//        <parameter name="secondTime" value="19:00" />
+//        <parameter name="departureStation" value="Warszawa Służewiec" />
+//        <parameter name="arrivalStation" value="Warszawa Lotnisko Chopina" />
+//        <parameter name="operator" value="SKM" />
 
-        String resultFilePath = "C:\\Users\\maciek\\IdeaProjects\\PKPTests\\resources\\polaczenie_kolejowe.pdf";
+    @Parameters({ "firstTime", "secondTime", "departureStation",
+                  "arrivalStation", "operator" })
+    @Test
+    public void testTakeTimeTable(String firstTime, String secondTime,
+                                  String departureStation, String arrivalStation, String operator) {
+//        String resultFilePath = "C:\\Users\\maciek\\IdeaProjects\\PKPTests\\resources\\polaczenie_kolejowe.pdf";
         String parsedPdfInString;
         List<String> resultsTimesListFromInputFile = null;
         List<String> resultsTimesListFromTestExecution = null;
-
-        parsedPdfInString = Utils.parsePdfFile(resultFilePath);
-        resultsTimesListFromInputFile = Utils.extractTimePairsFromPdfOutput(parsedPdfInString,
-                "17:00", "19:00");
-
-        this.webDriver.get("http://www.pkp.pl");
-        this.webDriver.manage().window().maximize();
         try {
             StartPage startPage = new StartPage(this.webDriver);
 
             SearchPage searchPage = startPage.goToSearchPage();
-            searchPage.enterStations("Warszawa Służewiec", "Warszawa Lotnisko Chopina");
-            searchPage.enterTime("17:00", "19:00");
+            searchPage.enterStations(departureStation, arrivalStation);
+            searchPage.enterTime(firstTime, secondTime);
             searchPage.unrollTransporters();
             searchPage.uncheckAllProviders();
             searchPage.checkSkmProvider();
@@ -86,6 +89,10 @@ public class SeleniumTests {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        //Preparing output from pdf file with manually downloaded results
+        parsedPdfInString = Utils.parsePdfFile(this.resultsPath);
+        resultsTimesListFromInputFile = Utils.extractTimePairsFromPdfOutput(parsedPdfInString, firstTime, secondTime);
 
         if (resultsTimesListFromTestExecution.isEmpty()){
             Assert.fail("resultsTimesListFromTestExecution was not initiated" );
@@ -96,21 +103,17 @@ public class SeleniumTests {
         }
     }
 
-
+    @Parameters({ "firstTime", "secondTime", "departureStation",
+            "arrivalStation", "operator" })
     @Test(expectedExceptions = AssertionError.class)
-    public void testSimulateNegative() {
+    public void testSimulateNegative(String firstTime, String secondTime,
+                                     String departureStation, String arrivalStation, String operator) {
 
         String resultFilePath = "C:\\Users\\maciek\\IdeaProjects\\PKPTests\\resources\\polaczenie_kolejowe.pdf";
         String parsedPdfInString;
         List<String> resultsTimesListFromInputFile = null;
         List<String> resultsTimesListFromTestExecution = null;
 
-        parsedPdfInString = Utils.parsePdfFile(resultFilePath);
-        resultsTimesListFromInputFile = Utils.extractTimePairsFromPdfOutput(parsedPdfInString,
-                "17:00", "19:00");
-
-        this.webDriver.get("http://www.pkp.pl");
-        this.webDriver.manage().window().maximize();
         try {
             StartPage startPage = new StartPage(this.webDriver);
 
@@ -138,6 +141,10 @@ public class SeleniumTests {
         if (resultsTimesListFromTestExecution.isEmpty()){
             Assert.fail("resultsTimesListFromTestExecution was not initiated" );
         }
+
+        //Preparing output from pdf file with manually downloaded results
+        parsedPdfInString = Utils.parsePdfFile(this.resultsPath);
+        resultsTimesListFromInputFile = Utils.extractTimePairsFromPdfOutput(parsedPdfInString, firstTime, secondTime);
 
         //Data is corrupted here for first element of results list
         resultsTimesListFromTestExecution.add(0, "12:00 15:00");
