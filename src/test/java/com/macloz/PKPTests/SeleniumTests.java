@@ -18,15 +18,15 @@ import java.util.List;
 public class SeleniumTests {
 
     private String webDriverPath;
-    private String resultsPath;
+    private String inputResults;
     private WebDriver webDriver;
 
 
-    @Parameters({ "webDriverPath", "resultsPath" })
+    @Parameters({ "webDriverPath", "inputResults" })
     @BeforeTest
-    protected void setUp(String webDriverPath, String resultsPath){
+    protected void setUp(String webDriverPath, String inputResults){
         this.webDriverPath = webDriverPath;
-        this.resultsPath = resultsPath;
+        this.inputResults = inputResults;
         System.setProperty("webdriver.chrome.driver", this.webDriverPath);
     }
 
@@ -76,7 +76,7 @@ public class SeleniumTests {
             e.printStackTrace();
         }
 
-        parsedPdfInString = Utils.parsePdfFile(this.resultsPath);
+        parsedPdfInString = Utils.parsePdfFile(this.inputResults);
         resultsTimesListFromInputFile = Utils.extractTimePairsFromPdfOutput(parsedPdfInString, firstTime, secondTime);
 
         if (resultsTimesListFromTestExecution.isEmpty()){
@@ -124,7 +124,7 @@ public class SeleniumTests {
         }
 
         //Preparing output from pdf file with manually downloaded results
-        parsedPdfInString = Utils.parsePdfFile(this.resultsPath);
+        parsedPdfInString = Utils.parsePdfFile(this.inputResults);
         resultsTimesListFromInputFile = Utils.extractTimePairsFromPdfOutput(parsedPdfInString, firstTime, secondTime);
 
         //Data is corrupted here for first element of results list
