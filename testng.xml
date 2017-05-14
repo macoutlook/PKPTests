@@ -5,7 +5,7 @@
     <test name="test1">
         <parameter name="browser" value="chrome" />
         <parameter name="webDriverPath" value="C:\\Users\\maciek\\Downloads\\chromedriver_win32\\chromedriver.exe" />
-        <parameter name="resultsPath" value="C:\Users\maciek\IdeaProjects\PKPTests\resources\polaczenie_kolejowe.pdf" />
+        <parameter name="inputResults" value="resources\\polaczenie_kolejowe.pdf" />
         <parameter name="firstTime" value="17:00" />
         <parameter name="secondTime" value="19:00" />
         <parameter name="departureStation" value="Warszawa Służewiec" />
