@@ -15,7 +15,7 @@ import java.util.List;
 
 
 public class SeleniumTestsRunner {
-    
+
     public static void main(String[] args) {
         String testNGXmlPath = "testng.xml";
         List<XmlSuite> testSuiteList;
