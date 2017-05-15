@@ -18,7 +18,7 @@ def main():
     if operating_sys == Operating_System.Windows:
 		script_name = "run_bat.bat"
     elif operating_sys == Operating_System.Linux:
-	    script_name = "run_bash.bash"
+	    script_name = "./run_bash.sh"
     else:
 		print "Operating system is not recognized."
 		return

@@ -25,6 +25,8 @@ For using application with test cases there is need to install:
 	https://www.python.org/ftp/python/2.7/python-2.7.amd64.msi
 	For Linux:
 	On every linux distribution Python 2.7 interpreter is available by default.
+4) Web browser for executing tests.
+Recommended version of Chrome is above 56.0.0
 	
 ------------------------------------------------------------------------
 							Configuration
@@ -50,3 +52,5 @@ There are at least two ways of running project:
 All dependencies from testng.xml file will be binded.
 Run PKPTests\src\test\java\com\macloz\PKPTests\SeleniumTestsRunner.java or testng.xml directly from IDE.
 2) Run run.py file. Program will be started. Script is universal for Windows and Linux.
+3) ./run_bash.sh directly command in Linux terminal.
+4) Run run_bat.bat in Windows command line.
